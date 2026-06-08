@@ -16,10 +16,10 @@ pub struct Rectangle {
 
 impl Rectangle {
     pub fn area(&self) -> f64 {
-        todo!()
+        return self.height * self.width;
     }
 
     pub fn is_square(&self) -> bool {
-        todo!()
+        return self.height == self.width;
     }
 }

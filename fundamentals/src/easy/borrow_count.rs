@@ -9,5 +9,11 @@
 */
 
 pub fn count_above(values: &Vec<i32>, threshold: i32) -> usize {
-    todo!()
+    let mut count = 0;
+    for i in values {
+        if i > &threshold{
+            count += 1;
+        }
+    }
+    count
 }

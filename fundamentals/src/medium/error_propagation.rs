@@ -11,5 +11,15 @@
 */
 
 pub fn parse_and_add(a: &str, b: &str) -> Result<i32, std::num::ParseIntError> {
-    todo!()
+    let num1: Result<i32, _> = a.parse();
+    let num2: Result<i32, _> = b.parse();
+    match num1 {
+        Ok(x) => {
+          match num2 {
+              Ok(y) => Ok(x+y),
+              Err(e) => Err(e)
+          }
+        },
+        Err(e) => Err(e)
+    }
 }

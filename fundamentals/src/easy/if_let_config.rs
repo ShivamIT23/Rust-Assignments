@@ -10,5 +10,10 @@
 */
 
 pub fn get_config(value: Option<String>) -> String {
-    todo!()
+    if let Some(x) = Some(value.unwrap_or(String::from("default"))) {
+        return x;
+    }
+    else {
+        return String::from("default");
+    }
 }

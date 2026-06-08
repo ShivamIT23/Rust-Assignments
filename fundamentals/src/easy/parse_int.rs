@@ -9,5 +9,9 @@
 */
 
 pub fn parse_int(s: &str) -> Result<i32, String> {
-    todo!()
+    let x: Result<i32, _> = s.parse();
+    match x {
+      Ok(x) => Ok(x),
+      Err(_) => Err(String::from("Error while parsing"))
+    }
 }

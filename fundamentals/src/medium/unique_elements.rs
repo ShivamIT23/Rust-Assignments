@@ -10,6 +10,16 @@
 
 use std::collections::HashSet;
 
+
 pub fn unique_elements(v: Vec<i32>) -> Vec<i32> {
-    todo!()
+    let mut seen = HashSet::new();
+    let mut result_vector : Vec<i32> = vec![];
+    for i in v.iter() {
+      match &seen.get(i) {
+        Some(_) => (),
+        None => {seen.insert(*i);
+        result_vector.push(*i);}
+      }
+    }
+    result_vector
 }

@@ -9,5 +9,10 @@
 */
 
 pub fn reverse_string(s: &str) -> String {
-    todo!()
+    let mut x = String::from("");
+
+    for i in s.chars().rev(){
+      x.push(i);
+    }
+    x
 }

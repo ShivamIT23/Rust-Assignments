@@ -9,5 +9,9 @@
 */
 
 pub fn first_and_last(slice: &[i32]) -> Option<(i32, i32)> {
-    todo!()
+    if slice.len() >= 1 {
+        Some((slice[0], slice[slice.len() - 1]))
+    } else {
+        None
+    }
 }
