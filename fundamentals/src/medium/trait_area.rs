@@ -9,6 +9,8 @@
     cargo test --test trait_area_test
 */
 
+use std::f64::consts::PI;
+
 pub trait Shape {
     fn area(&self) -> f64;
 }
@@ -23,16 +25,16 @@ pub struct Square {
 
 impl Shape for Circle {
     fn area(&self) -> f64 {
-        todo!()
+        PI * self.radius *self.radius
     }
 }
 
 impl Shape for Square {
     fn area(&self) -> f64 {
-        todo!()
+        self.side * self.side
     }
 }
 
 pub fn print_area(shape: &dyn Shape) -> f64 {
-    todo!()
+    shape.area()
 }

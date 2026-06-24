@@ -10,5 +10,27 @@
 */
 
 pub fn compress(s: &str) -> String {
-    todo!()
+    let mut res_string: String = String::from("");
+    if let Some(mut prev_char) = s.chars().nth(0) {
+        let mut count = 0;
+        for i in s.chars() {
+            if i == prev_char {
+                count = count + 1;
+            } else {
+                res_string.push(prev_char);
+                res_string = res_string + &count.to_string();
+                prev_char = i;
+                count = 1;
+            }
+        }
+        res_string.push(prev_char);
+        res_string = res_string + &count.to_string();
+        if res_string.len() >= s.len() {
+            return s.to_string();
+        } else {
+            return res_string;
+        }
+    } else {
+        return String::from("");
+    }
 }

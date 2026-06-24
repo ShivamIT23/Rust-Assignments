@@ -60,3 +60,36 @@ fn test_nested_array() {
     let arr = Value::Array(vec![Value::Null, Value::Bool(true)]);
     assert_eq!(arr.to_json_string(), "[null, true]");
 }
+
+#[test]
+fn test_recursive_array() {
+    let arr = Value::Array(vec![
+        Value::Number(1.0),
+        Value::Array(vec![Value::Bool(true), Value::Null]),
+    ]);
+
+    assert_eq!(arr.to_json_string(), "[1, [true, null]]");
+}
+
+#[test]
+fn test_object_with_nested_array() {
+    let obj = Value::Object(HashMap::from([(
+        "skills".to_string(),
+        Value::Array(vec![Value::String("Rust".to_string())]),
+    )]));
+
+    assert_eq!(obj.to_json_string(), "{\"skills\": [\"Rust\"]}");
+}
+
+#[test]
+fn test_object_with_nested_object() {
+    let obj = Value::Object(HashMap::from([(
+        "profile".to_string(),
+        Value::Object(HashMap::from([(
+            "active".to_string(),
+            Value::Bool(true),
+        )])),
+    )]));
+
+    assert_eq!(obj.to_json_string(), "{\"profile\": {\"active\": true}}");
+}

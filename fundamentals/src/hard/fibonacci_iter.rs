@@ -16,7 +16,7 @@ pub struct Fibonacci {
 
 impl Fibonacci {
     pub fn new() -> Self {
-        todo!()
+        Self { a: 0, b: 1 }
     }
 }
 
@@ -24,6 +24,10 @@ impl Iterator for Fibonacci {
     type Item = u64;
 
     fn next(&mut self) -> Option<Self::Item> {
-        todo!()
+        let c = self.a + self.b;
+        let send_item = self.a;
+        self.a = self.b;
+        self.b = c;
+        Some(send_item)
     }
 }

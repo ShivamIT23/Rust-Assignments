@@ -2,6 +2,6 @@
 members = [
     "fundamentals",
     "intermediate",
-    "async", "week15", "week16",
+    "async", "week15", "week16", "week17", "rustlings",
 ]
 resolver = "2"

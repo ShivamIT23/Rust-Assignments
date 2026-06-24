@@ -23,6 +23,6 @@ pub struct Person {
 
 impl Greet for Person {
     fn name(&self) -> &str {
-        todo!()
+        return &self.name;
     }
 }

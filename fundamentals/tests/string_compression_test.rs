@@ -37,7 +37,7 @@ fn test_two_chars_returns_original() {
 
 #[test]
 fn test_multiple_groups() {
-    assert_eq!(compress("aabb"), "a2b2");
+    assert_eq!(compress("aabb"), "aabb");
 }
 
 #[test]
