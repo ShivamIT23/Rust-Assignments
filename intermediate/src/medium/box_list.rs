@@ -17,10 +17,22 @@ pub enum List {
 
 impl List {
     pub fn sum(&self) -> i32 {
-        todo!()
+        let mut sum = 0;
+        match self {
+            List::Nil => return 0,
+            List::Cons(v, k) => {
+                sum = sum + v + k.sum();
+            }
+        }
+        sum
     }
 
     pub fn len(&self) -> usize {
-        todo!()
+        match self {
+            List::Nil => return 0,
+            List::Cons(v, k) => {
+                1 + k.len()
+            }
+        }
     }
 }

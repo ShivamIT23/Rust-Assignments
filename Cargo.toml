@@ -2,6 +2,6 @@
 members = [
     "fundamentals",
     "intermediate",
-    "async", "week15", "week16", "week17", "rustlings",
+    "async", "week15", "week16", "week17", "rustlings", "multithreading",
 ]
 resolver = "2"
