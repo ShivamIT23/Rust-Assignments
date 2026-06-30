@@ -20,10 +20,7 @@ fn process_instruction(
 ) -> ProgramResult {
     let mut account1 = accounts.iter();
     let data_account = next_account_info(&mut account1)?;
-
-    if (data_account.is_signer != true) {
-        return Err(solana_program::program_error::ProgramError::IllegalOwner);
-    }
+    let data_account2 = next_account_info(&mut account1)?;
 
     let mut counter_data = OnChainData::try_from_slice(&data_account.data.borrow())?;
 

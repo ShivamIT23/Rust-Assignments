@@ -2,6 +2,6 @@
 members = [
     "fundamentals",
     "intermediate",
-    "async", "week15", "week16", "week17", "rustlings", "multithreading", "week19-cpi",
+    "async", "week15", "week16", "week17", "rustlings", "multithreading", "week19-cpi", "cpi-contract",
 ]
 resolver = "2"

@@ -43,7 +43,11 @@ test("it transfers SOL from one wallet to another", async () => {
     // Given a payer with 2 SOL and a recipient with 0 SOL.
     const svm = new LiteSVM();
     const contractPubkey = await generateKeyPairSigner();
-    svm.addProgramFromFile(contractPubkey.address, "week19-cpi/client/double.so");
+    svm.addProgramFromFile(contractPubkey.address, "/Users/shivamgupta/Code/Rust-Assignments/week19-cpi/client/double.so");
+
+    const cpiPubkey = await generateKeyPairSigner();
+    svm.addProgramFromFile(cpiPubkey.address, "/Users/shivamgupta/Code/Rust-Assignments/week19-cpi/client/cpi.so");
+
     const payer = await generateKeyPairSigner();
     const dataAccount = await generateKeyPairSigner();
     svm.airdrop(payer.address, lamports(2_000_000_000n));
@@ -65,18 +69,21 @@ test("it transfers SOL from one wallet to another", async () => {
     );
 
     sendTransactionAndVerify(svm, transaction);
-    const contract_transaction = {
-        programAddress: contractPubkey.address,
-        accounts: [
-            { address: dataAccount.address, role: AccountRole.WRITABLE },
-        ],
-        data: new Uint8Array([]),
-        payer
-    };
 
     //both are same
     verifyamount(svm, dataAccount, [0, 0, 0, 0])
     verifyamount(svm, dataAccount, [0])
+
+
+    const contract_transaction = {
+        programAddress: cpiPubkey.address,
+        accounts: [
+            { address: dataAccount.address, role: AccountRole.WRITABLE },
+            { address: contractPubkey.address, role: AccountRole.WRITABLE },
+        ],
+        data: new Uint8Array([]),
+        payer
+    };
 
     const transaction2 = await pipe(
         createTransactionMessage({ version: 0 }),
@@ -91,9 +98,10 @@ test("it transfers SOL from one wallet to another", async () => {
     verifyamount(svm, dataAccount, [1, 0, 0, 0])
 
     const contract_transaction3 = {
-        programAddress: contractPubkey.address,
+        programAddress: cpiPubkey.address,
         accounts: [
             { address: dataAccount.address, role: AccountRole.WRITABLE },
+            { address: contractPubkey.address, role: AccountRole.WRITABLE },
         ],
         data: new Uint8Array([]),
         payer
